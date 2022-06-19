@@ -102,6 +102,18 @@
                     }
                     ?>
                 </div>
+
+                <div class="list-group">
+                    <a class="list-group-item"><strong>Kritik Dan Saran</strong></a>
+                    <form action="<?= base_url('Utama/kritiksaran'); ?>" method="POST">
+                        <div class="list-group-item">
+                            <input type="hidden" class="form-control" name="id_pelanggan" id="id_pelanggan" value="<?= $user['id']; ?>" required readonly readonly>
+                            <textarea  class="form-control" type="text" name="kritiksaran" id="kritiksaran" placeholder="Ketik Kritik Dan Saran"></textarea>
+                            <br>    
+                            <button type="submit" class="btn btn-success" >Kirim</button>
+                        </div>
+                    </form>
+                </div><br>
             </div>
             <!-- /.col-lg-3 -->
 

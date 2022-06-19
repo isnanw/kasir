@@ -40,6 +40,10 @@
             </li>
 
             <li>
+                <a href="<?= base_url('Banner'); ?>"><i class="fa fa-area-chart"></i> Banner Promo</a>
+            </li>
+
+            <li>
                 <a href="#"><i class="fa fa-tasks fa-fw"></i> Stok<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

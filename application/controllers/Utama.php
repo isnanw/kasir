@@ -180,6 +180,8 @@ class Utama extends CI_Controller
         $data['title'] = 'Selamat Datang';
         $data['user'] = $this->db->get_where('pelanggan', ['email' => $this->session->userdata('email')])->row_array();
         $data['kategori'] = $this->utama_model->get_kategori_all();
+        $toko = $this->db->get('toko')->row();
+        $data['toko'] = $toko;
         $this->load->view('frontend/themes/header', $data);
         $this->load->view('frontend/shopping/check_out', $data);
         $this->load->view('frontend/themes/footer', $data);
@@ -296,5 +298,16 @@ class Utama extends CI_Controller
             $this->cart->destroy();
             redirect('Utama/tampilanutama');
         }
+    }
+    public function kritiksaran()
+    {
+
+        $data = array(
+            'kritiksaran' => $this->input->post('kritiksaran'),
+            'id_pelanggan' => $this->input->post('id_pelanggan')
+        );
+        $this->db->insert('kritik', $data);
+        $this->session->set_flashdata('message', 'kritik');
+        redirect('Utama/tampilanutama','refresh');
     }
 }

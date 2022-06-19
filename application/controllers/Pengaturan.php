@@ -28,11 +28,12 @@ class Pengaturan extends CI_Controller
     {
         $data = array(
             'nama' => $this->input->post('nama'),
-            'alamat' => $this->input->post('alamat')
+            'alamat' => $this->input->post('alamat'),
+            'no_rek' => $this->input->post('no_rek')
         );
         $this->db->where('id', 1);
         $this->db->update('toko', $data);
-        $this->session->set_flashdata('message', 'Berhasil Di Update');
-        redirect('Pengaturan');
+        $this->session->set_flashdata('message', 'Berhasil Di Update Silahkan Login Ulang !');
+        redirect('Auth/logout');
     }
 }

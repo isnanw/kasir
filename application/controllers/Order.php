@@ -170,7 +170,7 @@ class Order extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('Order/menunggu', $data);
+        $this->load->view('order/menunggu', $data);
     }
     public function detailmenunggu()
     {
@@ -184,7 +184,7 @@ class Order extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('Order/detailmenunggu', $data);
+        $this->load->view('order/detailmenunggu', $data);
     }
     public function konfirmasi($id)
     {

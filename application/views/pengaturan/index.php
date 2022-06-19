@@ -30,6 +30,10 @@
                                         <textarea name="alamat" placeholder="Alamat" class="form-control" required style="width: 1002px; height: 96px;"><?php echo $toko->alamat ?></textarea>
                                     </div>
                                     <div class="form-group">
+                                        <label>No Rekening</label>
+                                        <input type="text" class="form-control" placeholder="Nomor Rekening" name="no_rek" value="<?php echo $toko->no_rek; ?>" required style="width: 1002px; height: 40px;">
+                                    </div>
+                                    <div class="form-group">
                                         <button class="btn btn-success" type="submit">Simpan</button>
                                     </div>
                                 </div>
