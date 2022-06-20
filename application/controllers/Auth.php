@@ -11,11 +11,11 @@ class Auth extends CI_Controller
     }
     public function index()
     {
+        $data['title'] = 'Login Page Sistem Penjualan';
         $this->form_validation->set_rules('username', 'Username', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Login Page Sistem Penjualan';
             $this->load->view('auth/login');
         } else {
             $this->_login();
