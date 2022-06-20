@@ -46,6 +46,16 @@ if (!empty($this->session->flashdata('message'))) {
                             }) 
                     </script>
                 ";
+    }elseif ($pesan == "kritik") {
+        $script = "
+                    <script>
+                            Swal.fire({
+                              icon: 'success',
+                              title: 'Data',
+                              text: 'Berhasil Menambah Kritik dan Saran !'
+                            }) 
+                    </script>
+                ";
     } else {
         $script =
             "

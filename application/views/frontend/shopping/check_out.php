@@ -12,6 +12,11 @@
             <div class="form-group  has-success has-feedback">
                 <div class="row">
                     <div class="col-md-6">
+                        <p>Silahkan Lakukan Pembayaran Pada No.Rek <?php echo $toko->no_rek; ?> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <label for="file">Upload Bukti Pembayaran</label>
                         <input type="file" id="file" name="file" accept=".pdf, .jpg, .png" required>
                     </div>
