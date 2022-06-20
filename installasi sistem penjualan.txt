@@ -1,0 +1,25 @@
+##CARA INSTALL SISTEM_PENJUALAN
+1. install GIT, jika bingung install git bisa tanya ESTI SETYANINGRUM wkkwk
+2. Setelah itu anda sudah harus memasang XAMPP atau WAMPP (salah satu), minimal versi php 7.4
+3. jika menggunakan xampp anda bisa ke folder xampp/htdoc lalu klik kanan lalu klik git bash here , setelah itu ketik "git clone https://github.com/BayuKun28/sistem_penjualan.git" tanpa petik
+4. jika menggunakan WAMPP anda bisa ke folder wampp/www lalu klik kanan lalu klik git bash here , setelah itu ketik "git clone https://github.com/BayuKun28/sistem_penjualan.git" tanpa petik lalu enter sampai proses selesai
+5. setelah itu restore database, buka phpmyadmin lalu buat database bernama sistem_penjualan, lalu restore database berada di folder assets bernama sistem_penjualan.sql
+6. setelah restore anda bisa menjalankan aplikasi
+
+##CARA MENGGUNAKAN APLIKASI FRONTEND NYA
+1. buka browser google chrome lalu ketik localhost/sistem_penjualan
+2. lalu aplikasi bisa digunakan untuk pelanggan
+
+##CARA MENGGUNAKAN APLIKASI BACKEND NYA
+1. buka browser google chrome lalu ketik localhost/sistem_penjualan/auth
+2. lalu aplikasi bisa digunakan untuk admin
+
+
+##CATATAN
+1. JIKA ANDA INGIN MENGETES FRONT END DAN BACK END BERSAMAAN MAKA ANDA HARUS MENGGUNAKAN BACKEND DI GOOGLE CHROME DAN FRONT END DI MOZILA ATAU SEBALIKNYA AGAR SESSION TIDAK BENTROK
+2. BISA MENGGUNAKAN BROWSER LAIN, ASAL FRONT END DAN BACK END DIBUKA DI BROWSER YANG BERBEDA ATAU SALAH SATU MENGGUNAKAN MODE INCONIGTO
+3. APLIKASI INI MASIH KURANG DI BAGIAN TAMBAH USER BACKEND SAJA, MASIH DALAM PROSES, SELEBIHNYA SUDAH DAN BISA DICOBA
+
+
+##SELAMAT MENCOBA 
+##CC NAMEDBAY
