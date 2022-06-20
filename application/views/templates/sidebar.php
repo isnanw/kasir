@@ -83,6 +83,9 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
+                <a href="<?= base_url('Kritik'); ?>"><i class="fa fa-envelope-o fa-fw"></i> Kritik Dan Saran</a>
+            </li>
+            <li>
                 <a href="<?= base_url('Pengaturan'); ?>"><i class="fa fa-gears fa-fw"></i> Pengaturan</a>
             </li>
             <li>

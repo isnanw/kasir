@@ -36,7 +36,7 @@
                                             <td><?= $s['gambar']; ?></td>
                                             <td><?= $s['keterangan']; ?></td>
                                             <td>
-                                                <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modaledit" data-idedit="<?= $s['id']; ?>" data-keteranganedit="<?= $s['keterangan']; ?>" name="editbanner" id="editbanner"><i class="fa fa-edit"></i>edit</a>
+                                                <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modaledit" data-idedit="<?= $s['id']; ?>" data-keteranganedit="<?= $s['keterangan']; ?>" name="editbanner" id="editbanner"><i class="fa fa-edit"></i></a>
                                                 <a data-kode="<?= $s['id']; ?>" href='javascript:void(0)' class="del_banner btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
@@ -70,30 +70,19 @@
                 <h5 class="modal-title"><b>Edit Banner Promo</b></h5>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('pelanggan/editbanner'); ?>" method="post">
+                <form action="<?= base_url('Banner/edit'); ?>" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="idedit" id="idedit">
-                    <div class="form-group">
-                        <label>Nama</label>
-                        <input type="text" class="form-control" placeholder="Nama" name="keteranganedit" id="keteranganedit" required>
+                    <label>Deskripsi / Keterangan</label>
+                    <textarea class="form-control" name="keteranganedit" id="keteranganedit" cols="30" rows="5" placeholder="Ketik Keterangan" required></textarea>
+                    <label for="gbbanneredit">Gambar</label>
+                    <p>Biarkan Jika Tidak Update Gambar</p>
+                    <input type="file" id="gbbanneredit" name="gbbanneredit" accept=".jpg, .png, .jpeg">
+                    <div class="modal-footer">
+                        <div class="text-right">
+                            <button class="btn btn-success" type="submit">Simpan</button>
+                            <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Jenis Kelamin</label>
-                        <select class="form-control" id="jkedit" name="jkedit">
-                            <option value="Pria">Pria</option>
-                            <option value="Wanita">Wanita</option>
-                            <option value="Lainya">Lainya</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Alamat</label>
-                        <input type="text" class="form-control" placeholder="Alamat" name="alamatedit" id="alamatedit" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Telepon</label>
-                        <input type="number" class="form-control" placeholder="Telepon" name="teleponedit" id="teleponedit" required>
-                    </div>
-                    <button class="btn btn-success" type="submit">Edit</button>
-                    <button class="btn btn-danger" data-dismiss="modal">Close</button>
                 </form>
             </div>
         </div>
@@ -112,7 +101,7 @@
                     <label>Deskripsi / Keterangan</label>
                     <textarea class="form-control" name="keterangan" id="keterangan" cols="30" rows="5" placeholder="Ketik Keterangan" required></textarea>
                     <label for="gbbanner">Gambar</label>
-                    <input type="file" id="gbbanner" name="gbbanner" accept=".jpg, .png" required>
+                    <input type="file" id="gbbanner" name="gbbanner" accept=".jpg, .png, .jpeg" required>
                 </div>
                 <div class="modal-footer">
                     <div class="text-right">
@@ -146,7 +135,7 @@
     $(document).on('click', '.del_banner', function(event) {
         event.preventDefault();
         let kode = $(this).attr('data-kode');
-        let delete_url = "<?= base_url(); ?>/Pelanggan/delete/" + kode;
+        let delete_url = "<?= base_url(); ?>/Banner/delete/" + kode;
 
 
         Swal.fire({

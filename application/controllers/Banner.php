@@ -28,7 +28,7 @@ class Banner extends CI_Controller
     {
 
         $config['upload_path'] = './upload/banner/';
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = 20000;
 
         $this->load->library('upload', $config);
@@ -59,13 +59,31 @@ class Banner extends CI_Controller
     public function edit()
     {
         $id = $this->input->post('idedit');
-        $data = array(
-            'nama' => $this->input->post('namaedit'),
-            'jenis_kelamin' => $this->input->post('jkedit')
-        );
-        $this->db->where('id', $id);
-        $this->db->update('banner', $data);
-        $this->session->set_flashdata('message', 'Berhasil Di Update');
-        redirect('Banner');
+
+        $config['upload_path'] = './upload/banner/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size'] = 20000;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('gbbanneredit')) {
+            $data = array(
+                'keterangan' => $this->input->post('keteranganedit')
+            );
+            $this->db->where('id', $id);
+            $this->db->update('banner', $data);
+            $this->session->set_flashdata('message', 'Berhasil Di Update');
+            redirect('Banner');
+        } else {
+            $fileData = $this->upload->data();
+            $data = array(
+                'keterangan' => $this->input->post('keteranganedit'),
+                'gambar' => $fileData['file_name']
+            );
+            $this->db->where('id', $id);
+            $this->db->update('banner', $data);
+            $this->session->set_flashdata('message', 'Berhasil Di Update');
+            redirect('Banner');
+        }
     }
 }

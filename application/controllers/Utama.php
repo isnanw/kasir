@@ -12,6 +12,7 @@ class Utama extends CI_Controller
         $this->load->library('cart');
         $this->load->model('produk_model');
         $this->load->model('order_model');
+        $this->load->model('banner_model');
         $this->load->model('kategori_produk_model');
         $this->load->model('utama_model');
         $this->load->model('transaksi_model');
@@ -154,6 +155,7 @@ class Utama extends CI_Controller
         $kategori = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $data['produk'] = $this->utama_model->get_produk_kategori($kategori);
         $data['kategori'] = $this->utama_model->get_kategori_all();
+        $data['banner'] = $this->banner_model->read();
 
         $this->load->view('frontend/themes/header', $data);
         $this->load->view('frontend/shopping/list_produk', $data);

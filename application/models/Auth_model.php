@@ -17,8 +17,15 @@ class Auth_model extends CI_Model
     }
     public function read()
     {
-        $query = "SELECT * FROM pengguna";
+        $idk = $this->session->userdata('id');
+        $query = "SELECT * FROM pengguna where id <> '$idk' ";
         return $this->db->query($query)->result_array();
+        echo json_encode($query);
+    }
+    public function profil($id)
+    {
+        $query = "SELECT * FROM pengguna where id = '$id' ";
+        return $this->db->query($query)->row_array();
         echo json_encode($query);
     }
 }

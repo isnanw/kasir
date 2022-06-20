@@ -1,28 +1,16 @@
 <div class="container col-md-12">
-  <h2>Promo</h2>
+  <h2>PROMO</h2>
   <div id="myCarousel" class="carousel slide" data-ride="carousel" >
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
     <!-- Wrapper for slides -->
-    <div class="carousel-inner" style="height: 250px !important;">
+    <div class="carousel-inner">
 
-      <div class="item active">
-        <img src="<?= base_url('upload/produk/logitechb701.jpg') ?>">
-      </div>
-
-      <div class="item">
-        <img src="<?= base_url('upload/produk/logitechb701.jpg') ?>">
-      </div>
-
-      <div class="item">
-        <img src="<?= base_url('upload/produk/logitechb701.jpg') ?>">
-      </div>
-
+      <?php $i = 1; ?>
+      <?php foreach ($banner as $b) : ?>
+        <div class="item <?php if($i == 1){ echo "active"; }else{  echo ""; } ?>">
+          <img  class="img-responsive" src="<?= base_url('upload/banner/') . $b['gambar']; ?>">
+        </div>
+        <?php $i++;?>
+      <?php endforeach ?>
     </div>
 
     <br>

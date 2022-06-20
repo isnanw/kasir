@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jun 15, 2022 at 12:53 PM
--- Server version: 5.7.31
--- PHP Version: 7.4.9
+-- Host: localhost
+-- Generation Time: Jun 20, 2022 at 03:57 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,18 +24,36 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `banner`
+--
+
+CREATE TABLE `banner` (
+  `id` int(11) NOT NULL,
+  `keterangan` text NOT NULL,
+  `gambar` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `banner`
+--
+
+INSERT INTO `banner` (`id`, `keterangan`, `gambar`) VALUES
+(1, 'Promo Cashback 30%', 'Banner-836x330px-Promo-OVO-Desember-20192.jpg'),
+(3, 'Promo', 'Banner-Juni.jpeg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `detail_transaksi`
 --
 
-DROP TABLE IF EXISTS `detail_transaksi`;
-CREATE TABLE IF NOT EXISTS `detail_transaksi` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `detail_transaksi` (
+  `id` int(11) NOT NULL,
   `transaksi_id` int(11) NOT NULL,
   `produk` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
-  `harga` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=97 DEFAULT CHARSET=latin1;
+  `harga` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `detail_transaksi`
@@ -114,7 +132,9 @@ INSERT INTO `detail_transaksi` (`id`, `transaksi_id`, `produk`, `qty`, `harga`) 
 (93, 87, 14, 1, '2500000'),
 (94, 88, 18, 1, '125000'),
 (95, 89, 2, 1, '80000'),
-(96, 89, 4, 1, '350000');
+(96, 89, 4, 1, '350000'),
+(97, 90, 4, 1, '350000'),
+(98, 90, 5, 1, '70000');
 
 -- --------------------------------------------------------
 
@@ -122,12 +142,10 @@ INSERT INTO `detail_transaksi` (`id`, `transaksi_id`, `produk`, `qty`, `harga`) 
 -- Table structure for table `kategori_produk`
 --
 
-DROP TABLE IF EXISTS `kategori_produk`;
-CREATE TABLE IF NOT EXISTS `kategori_produk` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `kategori` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `kategori_produk` (
+  `id` int(11) NOT NULL,
+  `kategori` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `kategori_produk`
@@ -141,18 +159,35 @@ INSERT INTO `kategori_produk` (`id`, `kategori`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kritik`
+--
+
+CREATE TABLE `kritik` (
+  `id` int(11) NOT NULL,
+  `kritiksaran` text NOT NULL,
+  `id_pelanggan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kritik`
+--
+
+INSERT INTO `kritik` (`id`, `kritiksaran`, `id_pelanggan`) VALUES
+(1, 'Mantab', 7);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `log_user`
 --
 
-DROP TABLE IF EXISTS `log_user`;
-CREATE TABLE IF NOT EXISTS `log_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `log_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE `log_user` (
+  `id` int(11) NOT NULL,
+  `log_time` timestamp NOT NULL DEFAULT current_timestamp(),
   `log_user` varchar(255) NOT NULL,
   `log_tipe` int(11) NOT NULL,
-  `log_desc` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `log_desc` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `log_user`
@@ -183,9 +218,8 @@ INSERT INTO `log_user` (`id`, `log_time`, `log_user`, `log_tipe`, `log_desc`) VA
 -- Table structure for table `pelanggan`
 --
 
-DROP TABLE IF EXISTS `pelanggan`;
-CREATE TABLE IF NOT EXISTS `pelanggan` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pelanggan` (
+  `id` int(11) NOT NULL,
   `nama` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `no_identitas` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tanggal_lahir` date DEFAULT NULL,
@@ -194,9 +228,8 @@ CREATE TABLE IF NOT EXISTS `pelanggan` (
   `telepon` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_active` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `is_active` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `pelanggan`
@@ -215,26 +248,23 @@ INSERT INTO `pelanggan` (`id`, `nama`, `no_identitas`, `tanggal_lahir`, `jenis_k
 -- Table structure for table `pengguna`
 --
 
-DROP TABLE IF EXISTS `pengguna`;
-CREATE TABLE IF NOT EXISTS `pengguna` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pengguna` (
+  `id` int(11) NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int(1) DEFAULT NULL,
-  `is_active` int(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `role` (`role`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `is_active` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `pengguna`
 --
 
 INSERT INTO `pengguna` (`id`, `username`, `password`, `nama`, `role`, `is_active`) VALUES
-(1, 'admin', '$2y$10$/I7laWi1mlNFxYSv54EUPOH8MuZhmRWxhE.LaddTK9TSmVe.IHP2C', 'Admin', 1, 1),
+(1, 'admin', '$2y$10$2LdgMhOAvP1v2zbLHxNqGuJtBvhkI57bcLGCUSfpjDaRx1Qbi0gSO', 'Admin', 1, 1),
 (3, 'bayu', '$2y$10$pBjQiIFX6MRQRGmxtZuctuPttTGu34x/4Xbud4.AbOlv6FeChV1La', 'Bayu Prastyo', 1, 1),
-(6, 'esti', '$2y$10$OyC8imde4RZ7NTSdfAD1Su47NtdMw/j72Wsl2bQWOsjcwnuLLru/O', 'Esti Setyaningrum', 2, 1);
+(6, 'esti', '$2y$10$OyC8imde4RZ7NTSdfAD1Su47NtdMw/j72Wsl2bQWOsjcwnuLLru/O', 'Esti Setyaningrum', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -242,20 +272,17 @@ INSERT INTO `pengguna` (`id`, `username`, `password`, `nama`, `role`, `is_active
 -- Table structure for table `pengguna_level`
 --
 
-DROP TABLE IF EXISTS `pengguna_level`;
-CREATE TABLE IF NOT EXISTS `pengguna_level` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `level` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+CREATE TABLE `pengguna_level` (
+  `id` int(11) NOT NULL,
+  `level` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengguna_level`
 --
 
 INSERT INTO `pengguna_level` (`id`, `level`) VALUES
-(1, 'Admin'),
-(2, 'Kasir');
+(1, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -263,9 +290,8 @@ INSERT INTO `pengguna_level` (`id`, `level`) VALUES
 -- Table structure for table `produk`
 --
 
-DROP TABLE IF EXISTS `produk`;
-CREATE TABLE IF NOT EXISTS `produk` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `produk` (
+  `id` int(11) NOT NULL,
   `barcode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_produk` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kategori` int(11) NOT NULL,
@@ -275,9 +301,8 @@ CREATE TABLE IF NOT EXISTS `produk` (
   `terjual` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `harga_modal` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gambar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `keterangan` text COLLATE utf8mb4_unicode_ci,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `keterangan` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `produk`
@@ -286,9 +311,9 @@ CREATE TABLE IF NOT EXISTS `produk` (
 INSERT INTO `produk` (`id`, `barcode`, `nama_produk`, `kategori`, `satuan`, `harga`, `stok`, `terjual`, `harga_modal`, `gambar`, `keterangan`) VALUES
 (1, 'PULS ALPRB', 'Voucher Pulsa 50000', 1, 2, '55000', 19968, '1', '50000', 'laptop1.jpg', 'TEXT CONTOH KETERANGAN'),
 (2, 'LOGITECHB70', 'Mouse LOGITECH B70', 4, 3, '80000', 9, '3', '75000', 'logitechb701.jpg', 'Mouse Wireless dengan bluetooth 5.0'),
-(4, 'HAYLOULS05', 'Haylou Solar ls05 smartwatch', 4, 3, '350000', 142, '3', '320000', 'haylou.jpg', 'Haylou Solar LS05 merupakan sebuah jam tangan digital multifungsi yang dapat memonitor secara akurat berbagai macam aktivitas olahraga Anda seperti jogging, bersepeda, senam dan lain-lain. Didesain khusus dengan material tahan air sehingga tahan terhadap keringat atau bahkan tetesan air hujan sekalipun.'),
-(5, 'ADAPTORCHARGEJOYSEUS', 'Adaptor Charge Joyseus RM34', 4, 3, '70000', 80, '2', '50000', 'adaptorchargejoyseus.jpg', 'Adaptor Charger ZAGBOX 4 port usb Qualcomm QC Power 3.0+2.4A (QC-988) ... JOYSEUS QC3.0 Car Charger 3.1A Dual USB Charging Black - CM0001'),
-(7, 'MREDVELVET', 'Bubuk Red Velvet', 3, 1, '50000', 3, '1', '25000', 'laptop1.jpg', 'TEXT CONTOH KETERANGAN'),
+(4, 'HAYLOULS05', 'Haylou Solar ls05 smartwatch', 4, 3, '350000', 141, '3', '320000', 'haylou.jpg', 'Haylou Solar LS05 merupakan sebuah jam tangan digital multifungsi yang dapat memonitor secara akurat berbagai macam aktivitas olahraga Anda seperti jogging, bersepeda, senam dan lain-lain. Didesain khusus dengan material tahan air sehingga tahan terhadap keringat atau bahkan tetesan air hujan sekalipun.'),
+(5, 'ADAPTORCHARGEJOYSEUS', 'Adaptor Charge Joyseus RM34', 4, 3, '70000', 79, '2', '50000', 'adaptorchargejoyseus.jpg', 'Adaptor Charger ZAGBOX 4 port usb Qualcomm QC Power 3.0+2.4A (QC-988) ... JOYSEUS QC3.0 Car Charger 3.1A Dual USB Charging Black - CM0001'),
+(7, 'MREDVELVET', 'Bubuk Red Velvet', 3, 1, '50000', 3, '1', '25000', 'laptop11.jpg', 'TEXT CONTOH KETERANGAN'),
 (8, 'SOFTCASE', 'Softcase Smarthphone', 4, 3, '15000', 17, '0', '4000', 'laptop1.jpg', 'TEXT CONTOH KETERANGAN'),
 (9, 'VCRM325GB3HR', 'Voucher Indosat 25 GB HR', 4, 2, '7000', 8, '0', '5000', 'laptop1.jpg', 'TEXT CONTOH KETERANGAN'),
 (10, 'KBLDATATYPEC', 'Kabel Data Type .C', 4, 3, '15000', 9, '0', '6000', 'laptop1.jpg', 'TEXT CONTOH KETERANGAN'),
@@ -307,12 +332,10 @@ INSERT INTO `produk` (`id`, `barcode`, `nama_produk`, `kategori`, `satuan`, `har
 -- Table structure for table `satuan_produk`
 --
 
-DROP TABLE IF EXISTS `satuan_produk`;
-CREATE TABLE IF NOT EXISTS `satuan_produk` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `satuan` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `satuan_produk` (
+  `id` int(11) NOT NULL,
+  `satuan` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `satuan_produk`
@@ -330,15 +353,13 @@ INSERT INTO `satuan_produk` (`id`, `satuan`) VALUES
 -- Table structure for table `stok_keluar`
 --
 
-DROP TABLE IF EXISTS `stok_keluar`;
-CREATE TABLE IF NOT EXISTS `stok_keluar` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `stok_keluar` (
+  `id` int(11) NOT NULL,
   `tanggal` datetime NOT NULL,
   `barcode` int(11) NOT NULL,
   `jumlah` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Keterangan` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `Keterangan` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `stok_keluar`
@@ -358,16 +379,14 @@ INSERT INTO `stok_keluar` (`id`, `tanggal`, `barcode`, `jumlah`, `Keterangan`) V
 -- Table structure for table `stok_masuk`
 --
 
-DROP TABLE IF EXISTS `stok_masuk`;
-CREATE TABLE IF NOT EXISTS `stok_masuk` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `stok_masuk` (
+  `id` int(11) NOT NULL,
   `tanggal` datetime NOT NULL,
   `barcode` int(11) NOT NULL,
   `jumlah` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `keterangan` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `supplier` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `supplier` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `stok_masuk`
@@ -403,15 +422,13 @@ INSERT INTO `stok_masuk` (`id`, `tanggal`, `barcode`, `jumlah`, `keterangan`, `s
 -- Table structure for table `supplier`
 --
 
-DROP TABLE IF EXISTS `supplier`;
-CREATE TABLE IF NOT EXISTS `supplier` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `supplier` (
+  `id` int(11) NOT NULL,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telepon` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `keterangan` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `keterangan` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `supplier`
@@ -429,20 +446,19 @@ INSERT INTO `supplier` (`id`, `nama`, `alamat`, `telepon`, `keterangan`) VALUES
 -- Table structure for table `toko`
 --
 
-DROP TABLE IF EXISTS `toko`;
-CREATE TABLE IF NOT EXISTS `toko` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `toko` (
+  `id` int(11) NOT NULL,
   `nama` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `no_rek` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `toko`
 --
 
-INSERT INTO `toko` (`id`, `nama`, `alamat`) VALUES
-(1, 'E PERCETAKAN ', 'SOLO RAYA');
+INSERT INTO `toko` (`id`, `nama`, `alamat`, `no_rek`) VALUES
+(1, 'E PERCETAKAN 123', 'SOLO RAYA AJA', '09876543210987');
 
 -- --------------------------------------------------------
 
@@ -450,9 +466,8 @@ INSERT INTO `toko` (`id`, `nama`, `alamat`) VALUES
 -- Table structure for table `transaksi`
 --
 
-DROP TABLE IF EXISTS `transaksi`;
-CREATE TABLE IF NOT EXISTS `transaksi` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `transaksi` (
+  `id` int(11) NOT NULL,
   `tanggal` datetime NOT NULL,
   `barcode` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `qty` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -462,10 +477,9 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
   `pelanggan` int(11) DEFAULT NULL,
   `nota` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kasir` int(11) NOT NULL,
-  `bukti` text COLLATE utf8mb4_unicode_ci,
-  `status` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `bukti` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `transaksi`
@@ -510,7 +524,197 @@ INSERT INTO `transaksi` (`id`, `tanggal`, `barcode`, `qty`, `total_bayar`, `juml
 (86, '2022-06-14 11:16:21', '', '', '', '80000', '', 999999, 'TRANTKUN38', 1, 'Photo_from_BayuKun.jpg', 1),
 (87, '2022-06-14 20:10:25', '', '', '', '2580000', '', 6, 'TRANTKUN39', 1, 'Photo_from_BayuKun1.jpg', 1),
 (88, '2022-06-15 00:38:10', '', '', '', '125000', '', 6, 'TRANTKUN40', 1, 'logitechb70.jpg', 1),
-(89, '2022-06-15 12:16:43', '', '', '', '430000', '', 7, 'TRANTKUN41', 1, 'adaptorchargejoyseus.jpg', 1);
+(89, '2022-06-15 12:16:43', '', '', '', '430000', '', 7, 'TRANTKUN41', 1, 'adaptorchargejoyseus.jpg', 1),
+(90, '2022-06-19 15:56:01', '', '', '', '420000', '', 7, 'TRANTKUN42', 0, 'Banner-836x330px-Promo-OVO-Desember-2019.jpg', 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `banner`
+--
+ALTER TABLE `banner`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kategori_produk`
+--
+ALTER TABLE `kategori_produk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kritik`
+--
+ALTER TABLE `kritik`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `log_user`
+--
+ALTER TABLE `log_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pengguna`
+--
+ALTER TABLE `pengguna`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role` (`role`);
+
+--
+-- Indexes for table `pengguna_level`
+--
+ALTER TABLE `pengguna_level`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `produk`
+--
+ALTER TABLE `produk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `satuan_produk`
+--
+ALTER TABLE `satuan_produk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `stok_keluar`
+--
+ALTER TABLE `stok_keluar`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `stok_masuk`
+--
+ALTER TABLE `stok_masuk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `toko`
+--
+ALTER TABLE `toko`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `banner`
+--
+ALTER TABLE `banner`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+
+--
+-- AUTO_INCREMENT for table `kategori_produk`
+--
+ALTER TABLE `kategori_produk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `kritik`
+--
+ALTER TABLE `kritik`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `log_user`
+--
+ALTER TABLE `log_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `pengguna`
+--
+ALTER TABLE `pengguna`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `pengguna_level`
+--
+ALTER TABLE `pengguna_level`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `produk`
+--
+ALTER TABLE `produk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `satuan_produk`
+--
+ALTER TABLE `satuan_produk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `stok_keluar`
+--
+ALTER TABLE `stok_keluar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `stok_masuk`
+--
+ALTER TABLE `stok_masuk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `toko`
+--
+ALTER TABLE `toko`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- Constraints for dumped tables

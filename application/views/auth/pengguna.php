@@ -78,29 +78,21 @@
                 <h5 class="modal-title"><b>Edit pengguna</b></h5>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('pengguna/editpengguna'); ?>" method="post">
-                    <input type="hidden" name="idedit" id="idedit">
+                <form action="<?= base_url('Auth/edit'); ?>" method="post">
                     <div class="form-group">
+                        <input type="hidden" name="idedit" id="idedit">
                         <label>Nama</label>
                         <input type="text" class="form-control" placeholder="Nama" name="namaedit" id="namaedit" required>
                     </div>
                     <div class="form-group">
-                        <label>Jenis Kelamin</label>
-                        <select class="form-control" id="jkedit" name="jkedit">
-                            <option value="Pria">Pria</option>
-                            <option value="Wanita">Wanita</option>
-                            <option value="Lainya">Lainya</option>
-                        </select>
+                        <label>Username</label>
+                        <input type="text" class="form-control" placeholder="Username" name="usernameedit" id="usernameedit" required>
                     </div>
                     <div class="form-group">
-                        <label>Alamat</label>
-                        <input type="text" class="form-control" placeholder="Alamat" name="alamatedit" id="alamatedit" required>
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Password" name="passwordedit" id="passwordedit" required>
                     </div>
-                    <div class="form-group">
-                        <label>Telepon</label>
-                        <input type="number" class="form-control" placeholder="Telepon" name="teleponedit" id="teleponedit" required>
-                    </div>
-                    <button class="btn btn-success" type="submit">Edit</button>
+                    <button class="btn btn-success" type="submit">Tambah</button>
                     <button class="btn btn-danger" data-dismiss="modal">Close</button>
                 </form>
             </div>
@@ -151,14 +143,10 @@
         $(document).on('click', '#editpengguna', function() {
             var idedit = $(this).data('idedit');
             var namaedit = $(this).data('namaedit');
-            var alamatedit = $(this).data('alamatedit');
-            var teleponedit = $(this).data('teleponedit');
-            var jkedit = $(this).data('jkedit');
+            var usernameedit = $(this).data('usernameedit');
             $('#idedit').val(idedit);
             $('#namaedit').val(namaedit);
-            $('#alamatedit').val(alamatedit);
-            $('#teleponedit').val(teleponedit);
-            $('#jkedit').val(jkedit);
+            $('#usernameedit').val(usernameedit);
         })
     })
 
