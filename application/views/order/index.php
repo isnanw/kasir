@@ -281,6 +281,7 @@
                         produk_id: produk_id,
                         nama_produk: nama_produk,
                         harga: harga,
+                        stok: stok,
                         qty: qty
                     },
                     success: function(data) {

@@ -30,7 +30,7 @@
     <![endif]-->
 </head>
 
-<body style="background-color:#3F65D4;">
+<body background="<?= base_url('assets/bg.png'); ?>" style="background-repeat: no-repeat; background-size: 100% auto;">
 
     <div class="container">
         <div class="row">
@@ -42,41 +42,41 @@
                                 <h3>Silahkan Login</h3>
                             </center>
                         </h3>
-                    </br>
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
-                <div class="panel-body">
-                    <form method="post" action="<?= base_url('auth'); ?>">
-                        <fieldset>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
-                            </div>
-                            <button type="submit" class="btn btn-lg btn-primary btn-block">
-                                Masuk
-                            </button>
-                            <!-- Change this to a button or input when using this as a form -->
-                        </fieldset>
-                    </form>
+                        </br>
+                        <?= $this->session->flashdata('message'); ?>
+                    </div>
+                    <div class="panel-body">
+                        <form method="post" action="<?= base_url('auth'); ?>">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                </div>
+                                <button type="submit" class="btn btn-lg btn-primary btn-block">
+                                    Masuk
+                                </button>
+                                <!-- Change this to a button or input when using this as a form -->
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- jQuery -->
-<script src="<?= base_url('assets/'); ?>js/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="<?= base_url('assets/'); ?>js/jquery.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= base_url('assets/'); ?>js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?= base_url('assets/'); ?>js/bootstrap.min.js"></script>
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="<?= base_url('assets/'); ?>js/metisMenu.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="<?= base_url('assets/'); ?>js/metisMenu.min.js"></script>
 
-<!-- Custom Theme JavaScript -->
-<script src="<?= base_url('assets/'); ?>js/startmin.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="<?= base_url('assets/'); ?>js/startmin.js"></script>
 
 </body>
 

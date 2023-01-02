@@ -47,6 +47,7 @@ class Order extends CI_Controller
             'id' => $this->input->post('produk_id'),
             'name' => $this->input->post('nama_produk'),
             'price' => $this->input->post('harga'),
+            'stok' => $this->input->post('stok'),
             'qty' => $this->input->post('qty'),
         );
         $this->cart->insert($data);
@@ -58,7 +59,28 @@ class Order extends CI_Controller
         $no = 0;
         foreach ($this->cart->contents() as $items) {
             $no++;
-            $output .= '
+            if ($items['qty'] > $items['stok']) {
+                $script =
+                    "
+                        <script>
+                        Swal.fire({
+                          icon: 'error',
+                          title: 'Data',
+                          text: 'Stok Kurang'
+                          }) 
+                          </script>
+                          ";
+                echo $script;
+                // echo "<script> alert('Stok Kurang') </script>" ;
+
+                $data = array(
+                    'rowid' => $items['rowid'],
+                    'qty'   => $items['stok']
+                );
+                $this->cart->Update($data);
+                echo $this->show_cart();
+            } else {
+                $output .= '
 				<tr>
 					<td>' . $items['name'] . '</td>
 					<td>' . number_format($items['price']) . '</td>
@@ -67,6 +89,7 @@ class Order extends CI_Controller
 					<td><button type="button" id="' . $items['rowid'] . '" class="hapus_cart btn btn-danger btn-xs">Batal</button></td>
 				</tr>
 			';
+            }
         }
         $output .= '
 			<tr>
