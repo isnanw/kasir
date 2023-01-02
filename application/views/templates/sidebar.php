@@ -38,11 +38,6 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-
-            <li>
-                <a href="<?= base_url('Banner'); ?>"><i class="fa fa-area-chart"></i> Banner Promo</a>
-            </li>
-
             <li>
                 <a href="#"><i class="fa fa-tasks fa-fw"></i> Stok<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -56,16 +51,7 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-money fa-fw"></i> Transaksi<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="<?= base_url('Order'); ?>">Transaksi</a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('Order/menunggu') ?>">Transaksi Belum Terkonfirmasi</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
+                <a href="<?= base_url('Order'); ?>"><i class="fa fa-money fa-fw"></i> Transaksi</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-book fa-fw"></i> Laporan<span class="fa arrow"></span></a>
@@ -81,9 +67,6 @@
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
-            </li>
-            <li>
-                <a href="<?= base_url('Kritik'); ?>"><i class="fa fa-envelope-o fa-fw"></i> Kritik Dan Saran</a>
             </li>
             <li>
                 <a href="<?= base_url('Pengaturan'); ?>"><i class="fa fa-gears fa-fw"></i> Pengaturan</a>
