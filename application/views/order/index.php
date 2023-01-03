@@ -26,7 +26,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Kode</th>
+                                                <th hidden>Kode</th>
                                                 <th>Nama</th>
                                                 <th>Stok</th>
                                                 <th>Harga</th>
@@ -39,14 +39,16 @@
                                             <?php foreach ($produk as $row) : ?>
                                                 <tr>
                                                     <td><?= $i; ?></td>
-                                                    <td><?php echo $row->barcode; ?></td>
-                                                    <td><?php echo $row->nama_produk; ?></td>
+                                                    <td hidden><?php echo $row->barcode; ?></td>
+                                                    <td><?php echo $row->nama_produk; ?><br>
+                                                        <small style="font-size: 9px; color: blue;"><?php echo $row->barcode; ?></small>
+                                                    </td>
                                                     <td><?php echo $row->stok; ?></td>
                                                     <td><?php echo 'Rp ' . number_format($row->harga); ?></td>
                                                     <td>
                                                         <div class="row">
                                                             <div class="col-md-2">
-                                                                <input type="number" name="quantity" id="<?php echo $row->id; ?>" value="1" class="quantity form-control">
+                                                                <input style="width: 90px;" type="number" name="quantity" id="<?php echo $row->id; ?>" value="1" class="quantity form-control">
                                                             </div>
                                                         </div>
                                                     </td>
