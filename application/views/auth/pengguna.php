@@ -118,6 +118,13 @@
                         <input type="text" class="form-control" placeholder="Username" name="username" required>
                     </div>
                     <div class="form-group">
+                        <label>Role</label>
+                        <select name="role" id="role" class="form-control" required>
+                            <option value="1">Admin</option>
+                            <option value="2">Kasir</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label>Password</label>
                         <input type="password" class="form-control" placeholder="Password" name="password" required>
                     </div>
@@ -182,7 +189,7 @@ if (!empty($this->session->flashdata('message'))) {
                               icon: 'success',
                               title: 'Data',
                               text: 'Data Berhasil Ditambah'
-                            }) 
+                            })
                     </script>
                 ";
     } elseif ($pesan == "Berhasil Dihapus") {
@@ -193,7 +200,7 @@ if (!empty($this->session->flashdata('message'))) {
                               icon: 'success',
                               title: 'Data',
                               text: 'Berhasil Dihapus'
-                            }) 
+                            })
                     </script>
                 ";
     } elseif ($pesan == "Berhasil Di Update") {
@@ -204,7 +211,7 @@ if (!empty($this->session->flashdata('message'))) {
                               icon: 'success',
                               title: 'Data',
                               text: 'Berhasil Di Update'
-                            }) 
+                            })
                     </script>
                 ";
     } else {
@@ -215,7 +222,7 @@ if (!empty($this->session->flashdata('message'))) {
                                   icon: 'error',
                                   title: 'Data',
                                   text: 'Gagal'
-                                }) 
+                                })
 
                     </script>
                     ";
