@@ -13,11 +13,8 @@
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url('assets/'); ?>css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="<?= base_url('assets/'); ?>css/metisMenu.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
-    <link href="<?= base_url('assets/'); ?>css/startmin.css" rel="stylesheet">
+    <link href="<?= base_url('assets/'); ?>css/login.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="<?= base_url('assets/'); ?>css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -33,38 +30,18 @@
 <body background="<?= base_url('assets/bg.png'); ?>" style="background-repeat: no-repeat; background-size: 100% auto;">
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <center>
-                                <h3>Silahkan Login</h3>
-                            </center>
-                        </h3>
-                        </br>
-                        <?= $this->session->flashdata('message'); ?>
-                    </div>
-                    <div class="panel-body">
-                        <form method="post" action="<?= base_url('auth'); ?>">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
-                                </div>
-                                <button type="submit" class="btn btn-lg btn-primary btn-block">
-                                    Masuk
-                                </button>
-                                <!-- Change this to a button or input when using this as a form -->
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <?= $this->session->flashdata('message'); ?>
+            <form class="form-signin" method="post" action="<?= base_url('auth'); ?>">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Masukkan Username" required autofocus>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Masuk</button>
+            </form>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
 
     <!-- jQuery -->
     <script src="<?= base_url('assets/'); ?>js/jquery.min.js"></script>
