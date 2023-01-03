@@ -26,6 +26,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
+                                                <th>Kode</th>
                                                 <th>Nama</th>
                                                 <th>Stok</th>
                                                 <th>Harga</th>
@@ -38,6 +39,7 @@
                                             <?php foreach ($produk as $row) : ?>
                                                 <tr>
                                                     <td><?= $i; ?></td>
+                                                    <td><?php echo $row->barcode; ?></td>
                                                     <td><?php echo $row->nama_produk; ?></td>
                                                     <td><?php echo $row->stok; ?></td>
                                                     <td><?php echo 'Rp ' . number_format($row->harga); ?></td>
@@ -378,7 +380,7 @@ if (!empty($this->session->flashdata('message'))) {
                               icon: 'success',
                               title: 'Data',
                               text: 'Berhasil Belanja'
-                            }) 
+                            })
                     </script>
                 ";
         redirect('Order/cetak');
@@ -390,7 +392,7 @@ if (!empty($this->session->flashdata('message'))) {
                             icon: 'error',
                             title: 'Data',
                             text: 'Uang Kurang'
-                            }) 
+                            })
 
                     </script>
                         ";
@@ -402,7 +404,7 @@ if (!empty($this->session->flashdata('message'))) {
                                   icon: 'error',
                                   title: 'Data',
                                   text: 'Gagal'
-                                }) 
+                                })
 
                     </script>
                     ";
